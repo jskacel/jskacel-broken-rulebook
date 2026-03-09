@@ -1,0 +1,17 @@
+---
+- name: Listen for events on a webhook from webhook
+  hosts: localhost
+  sources:
+    - ansible.eda.webhook:
+        host: 0.0.0.0
+        port: 5002
+  rules:
+    - name: Read raw payload 
+      condition: #event.payload is defined
+        any:
+          - event.meta is defined
+          - event.payload is defined
+          - event.payload.message == "Ansible is super cool!"
+      action: 
+        debug:
+          msg: "The value is {{ event.payload }}"
