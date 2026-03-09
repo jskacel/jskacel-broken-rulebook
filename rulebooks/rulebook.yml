@@ -14,4 +14,4 @@
           - event.payload.message == "Ansible is super cool!"
       action: 
         debug:
-          msg: "The value is {{ event.payload }}"
+          msg: "The value is {{ payload }}"
