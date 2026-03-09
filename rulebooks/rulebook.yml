@@ -7,12 +7,7 @@
         port: 5002
   rules:
     - name: Read raw payload 
-      condition: #event.payload is defined
-        any:
-          - event.meta is defined
-          - event.payload is defined
-          - event.payload.message == "Ansible is super cool!"
+      condition: event.meta is defined or event.payload is defined or event.payload.message == "Ansible is super cool!"
       action: 
         debug:
-          #msg: "The value is {{ payload }}"
-          var: event
+          msg: "The value is {{ event.payload }}"
